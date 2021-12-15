@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TO DO LIST</title>
+    <link rel="stylesheet" href="https://maxst.icons8.com/vue-static/landings/line-awesome/line-awesome/1.3.0/css/line-awesome.min.css">
+    <link rel="stylesheet" href="./public/style.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+<body>
+    <input type="checkbox" id="nav-toggle">
+    <div class="sidebar">
+        <div class="sidbar-brand">
+            <h2><span class="las la-clipboard"></span><span> BLaNaTeK</span></h2>
+        </div>
+
+        <div class="sidebar-menu">
+            <ul id="newProject">
+                <li>
+                    <a class="active"><span class="lar la-file-powerpoint">
+                        <span>All projects</span>
+                    </a>
+
+                </li>
+                <li>
+                    <a href="" data-bs-toggle="modal" data-bs-target="#projectModal" >
+                        <img src="https://img.icons8.com/ios/50/000000/add--v1.png"/>
+                        <span class="projectName">Add New Project</span>
+                    </a>
+                </li>
+                <li id="project" style="display: none;">
+                    <a href="">
+                        <span class="projectName">Project Name 1</span>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="main-content">
+        <header>
+            <h2>
+                <label for="nav-toggle">
+                    <span class="las la-bars"></span>
+                </label>
+                To Do List
+            </h2>
+        </header>
+        <main>
+            <!-- <div class="recent-grid"> -->
+                <div class="project">
+                    <div class="card">
+                        <div class="card-header">
+                            <h2>Project Name</h2>
+                        </div>
+                        <div class="tashInput">
+                            <button id="tashAdd" data-bs-toggle="modal" data-bs-target="#tashModal">ADD</button>
+                        </div>
+                        <div class="card-body">
+                            <div class="table-responsive">
+                                <table>
+                                    <thead>
+                                        <tr>
+                                            <td>Task</td>
+                                            <td>Description</td>
+                                            <td>Date-debut</td>
+                                            <td>finish</td>
+                                            <td>status</td>
+                                            <td>Action</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody  id="newTask" width="100%" >
+                                        <tr id="task" style="display: none;">
+                                            <td class="task-name">name</td>
+                                            <td class="task-description">description</td>
+                                            <td class="task-due_at">due_at</td>
+                                            <td class="task-finish">finish</td>
+                                            <td>
+                                                <span class="status purple"></span>
+                                                <span class="task-status">Status</span>
+                                            </td>
+                                            <td>
+                                                <div class="tashInput">
+                                                    <button  type="button" class="btn btn-success editTach" id="tashUpdate"  data-bs-toggle="modal" data-bs-target="#updateTask">Edit</button>
+                                                </div>
+                                                <!-- <button type="button" class="btn btn-danger"> Delete</button> -->
+                                                <!-- <i class="fas fa-edit fa-lg"></i> -->
+                                                <!-- <i class="fas fa-trash fa-lg text-danger"></i> -->
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>           
+            <!-- </div> -->
+        </main>
+    </div>
+
+
+    <!--Adding Project Modaaaaaaaaall-->
+
+    <div class="modal fade" id="projectModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><b>Add Project</b></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="projectInput" id="projectName" placeholder="enter project name">
+                    <input type="text" class="projectInput" id="projectDescription" placeholder="enter project description">
+                    <select name="prioritie" id="prioritie">
+                        <option value="important">important</option>
+                        <option value="medium">medium</option>
+                        <option value="simple">simple</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="projectBtn" class="projectBtn btn btn-primary">Save changes</button>
+                </div>
+            </div>
+            </div>
+    </div>
+
+        <!--Adding Tash Modaaaaaaaaall-->
+
+    <div class="modal fade" id="tashModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel"><b>Add Tach</b></h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="projectInput" id="tashName" placeholder="enter tachet name">
+                    <input type="text" class="projectInput" id="tashDesription" placeholder="enter tache description">
+                    <input type="text" class="projectInput" id="tashDate" placeholder="enter le delai de la tache">
+                    <select name="prioritie" id="prioritie">
+                        <option value="To do">To do</option>
+                        <option value="on coure">on coure</option>
+                        <!-- <option value="simple">simple</option> -->
+                    </select>
+                </div>
+                <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" id="tashBtn" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+            </div>
+    </div>
+
+
+     <!--Update Tash Modaaaaaaaaall-->
+
+    <div class="modal fade" id="updateTask" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel"><b>Update Tach</b></h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input type="text" class="projectInput" id="tacheName" placeholder="enter tachet name">
+                <input type="text" class="projectInput" id="tacheDesription" placeholder="enter tache description">
+                <input type="text" class="projectInput" id="tacheDate" placeholder="enter le delai de la tache">
+                <select name="prioritie" id="prioritie">
+                    <option value="important">important</option>
+                    <option value="medium">medium</option>
+                    <option value="simple">simple</option>
+                </select>
+            </div>
+            <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+        </div>
+</div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+
+    <script src="./public/bundle.js"></script>
+</body>
+</html>
