@@ -1,0 +1,22 @@
+[
+    {
+        "id": "1",
+        "name": "BMS",
+        "description":"Busniss model canvas"
+    },
+    {
+        "id": "2",
+        "name": "EDM",
+        "description":"Etude de marche"
+    },
+    {
+        "id": "3",
+        "name": "FDP",
+        "description":"Fiche de projet"
+    },
+    {
+        "id": "4",
+        "name": "PM",
+        "description":"Plan Marketing"
+    }
+]
