@@ -4,8 +4,7 @@ const tasks = require('./data/tasks')
 const server = http.createServer((req,res)=> {
   // console.log(123)
     if(req.url === 'api/tasks'){
-      res.writeHead(200,{'Content-Type':'application/json'})
-      res.end(JSON.stringify(tasks))
+     
     }else{
       res.writeHead(404,{'Content-Type':'application/json'})
       res.end(JSON.stringify({message: 'Route Not Found'}))
