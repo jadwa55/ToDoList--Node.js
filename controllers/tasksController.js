@@ -53,5 +53,6 @@ async function createTask(req, res){
    
 module.exports = {
     getTasks,
-    getTask
+    getTask,
+    createTask
 }
