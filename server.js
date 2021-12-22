@@ -1,5 +1,5 @@
 const http = require('http')
-const { getTasks, getTask, createTask } = require('./controllers/tasksController')
+const { getTasks, getTask, createTask, updateTask } = require('./controllers/tasksController')
 
 const server = http.createServer((req,res)=> {
     if(req.url === '/api/tasks' && req.method === 'GET'){
@@ -9,6 +9,9 @@ const server = http.createServer((req,res)=> {
         getTask(req, res, id)
     } else if (req.url === '/api/tasks' && req.method === 'POST'){
         createTask(req, res)
+      } else if (req.url.match(/\/api\/tasks\/([0-9]+)/) && req.method === 'PUT')
+      { const id = req.url.split('/')[3]
+        updateTask(req, res, id)
     }else{
       res.writeHead(404,{'Content-Type':'application/json'})
       res.end(JSON.stringify({message: 'Route Not Found'}))

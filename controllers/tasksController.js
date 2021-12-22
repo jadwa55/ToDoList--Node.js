@@ -55,6 +55,29 @@ async function createTask(req, res){
     }
 } 
 
+
+
+// @desc Update a task
+// @route PUT / api/task/:id
+async function updateTask(req, res, id){
+    try{
+        const body = await getPostData(req, res)
+
+        const { name,description } = JSON.parse(body)
+
+        const task = {
+            name,
+            description
+        }
+        const newTask =  await Tasks.create(task)
+
+        res.writeHead(201,{'Content-type': 'application/json' })
+        return res.end(JSON.stringify(newTask))
+   
+    }catch (error) {
+        console.log(error)
+    }
+}
    
 module.exports = {
     getTasks,
