@@ -37,7 +37,7 @@ async function getTask(req, res, id){
 // @route Post / api/task
 async function createTask(req, res){
     try{
-        const body = await getPostData(req, res)
+        const body = await getPostData(req)
 
         const { name,description } = JSON.parse(body)
 
@@ -67,7 +67,7 @@ async function updateTask(req, res, id){
             res.writeHead(404,{'Content-Type':'application/json'})
             res.end(JSON.stringify({message: 'Task Not Found'}))
         } else {
-            const body = await getPostData(req, res)
+            const body = await getPostData(req)
 
             const { name,description } = JSON.parse(body)
 
