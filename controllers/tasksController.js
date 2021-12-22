@@ -61,19 +61,25 @@ async function createTask(req, res){
 // @route PUT / api/task/:id
 async function updateTask(req, res, id){
     try{
-        const body = await getPostData(req, res)
+        const task = await Tasks.findById(id)
 
-        const { name,description } = JSON.parse(body)
+        if(!task){
+            res.writeHead(404,{'Content-Type':'application/json'})
+            res.end(JSON.stringify({message: 'Task Not Found'}))
+        } else {
+            const body = await getPostData(req, res)
 
-        const task = {
-            name,
-            description
-        }
-        const newTask =  await Tasks.create(task)
+            const { name,description } = JSON.parse(body)
 
-        res.writeHead(201,{'Content-type': 'application/json' })
-        return res.end(JSON.stringify(newTask))
-   
+            const taskData = {
+                name: name || task.name,
+                description: description || task.description
+            }
+            const updTask =  await Tasks.update(id, taskData)
+
+            res.writeHead(200,{'Content-type': 'application/json' })
+            return res.end(JSON.stringify(updTask))
+        }   
     }catch (error) {
         console.log(error)
     }
@@ -82,5 +88,6 @@ async function updateTask(req, res, id){
 module.exports = {
     getTasks,
     getTask,
-    createTask
+    createTask,
+    updateTask
 }
