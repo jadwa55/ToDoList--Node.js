@@ -1,4 +1,4 @@
-const tasks = require('../data/tasks')
+let tasks = require('../data/tasks')
 const { v4: uuidv4 } = require('uuid')
 
 const { writeDataToFile } = require('../test')
@@ -33,11 +33,19 @@ function update(id, task) {
         resolve(tasks[index])
     })
 }
+function remove(id) {
+    return new Promise((resolve, reject) => {
+        tasks =  tasks.filter((p) => p.id !== id)
+        writeDataToFile('./data/tasks.json', tasks)
+        resolve()
+    })
+}
 
 
 module.exports = {
     findAll,
     findById,
     create,
-    update
+    update,
+    remove
 }

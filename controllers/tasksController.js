@@ -99,7 +99,7 @@ async function deleteTask(req, res, id){
             res.writeHead(404,{'Content-Type':'application/json'})
             res.end(JSON.stringify({message: 'Task Not Found'}))
         } else {
-            await Tasks.romove(id)
+            await Tasks.remove(id)
             res.writeHead(200,{'Content-Type':'application/json'})
             res.end(JSON.stringify({message: `Task ${id} removed` }))
         }       
