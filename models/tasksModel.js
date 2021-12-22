@@ -21,6 +21,16 @@ function create(task) {
         const newTask = {id: uuidv4(), ...task}
         tasks.push(newTask)
         writeDataToFile('./data/tasks.json', tasks)
+        resolve(newTask)
+    })
+}
+
+function update(id, task) {
+    return new Promise((resolve, reject) => {
+        const index = tasks.findIndex((p) => p.id === id)
+        tasks[index] = {id, ... tasks}
+        writeDataToFile('./data/tasks.json', tasks)
+        resolve(tasks[index])
     })
 }
 
@@ -28,5 +38,6 @@ function create(task) {
 module.exports = {
     findAll,
     findById,
-    create
+    create,
+    update
 }
