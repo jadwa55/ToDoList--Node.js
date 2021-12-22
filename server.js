@@ -1,5 +1,5 @@
 const http = require('http')
-const { getTasks, getTask, createTask, updateTask, removeTask } = require('./controllers/tasksController')
+const { getTasks, getTask, createTask, updateTask, deleteTask } = require('./controllers/tasksController')
 
 const server = http.createServer((req,res)=> {
     if(req.url === '/api/tasks' && req.method === 'GET'){
@@ -14,7 +14,7 @@ const server = http.createServer((req,res)=> {
         updateTask(req, res, id)
       } else if (req.url.match(/\/api\/tasks\/([0-9]+)/) && req.method === 'DELETE')
       { const id = req.url.split('/')[3]
-        removeTask(req, res, id)
+        deleteTask(req, res, id)
     }else{
       res.writeHead(404,{'Content-Type':'application/json'})
       res.end(JSON.stringify({message: 'Route Not Found'}))
