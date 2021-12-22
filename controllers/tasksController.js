@@ -84,10 +84,34 @@ async function updateTask(req, res, id){
         console.log(error)
     }
 }
+
+
+
+
+
+// @desc Delete single task
+// @route DELETE /api/task /: id
+async function deleteTask(req, res, id){
+    try{
+        const task = await Tasks.findById(id)
+
+        if(!task) {
+            res.writeHead(404,{'Content-Type':'application/json'})
+            res.end(JSON.stringify({message: 'Task Not Found'}))
+        } else {
+            await Tasks.romove(id)
+            res.writeHead(200,{'Content-Type':'application/json'})
+            res.end(JSON.stringify({message: `Task ${id} removed` }))
+        }       
+    }catch (error) {
+        console.log(error)
+    }
+}
    
 module.exports = {
     getTasks,
     getTask,
     createTask,
-    updateTask
+    updateTask,
+    deleteTask
 }
