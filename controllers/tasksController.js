@@ -1,5 +1,6 @@
-const { parse } = require('@vue/compiler-dom')
 const Tasks = require('../models/tasksModel')
+
+const { getPostData } = require('../test')
 
 // @desc Gets All products
 // @route GET /api/products 
@@ -31,29 +32,24 @@ async function getTask(req, res, id){
         console.log(error)
     }
 }
+
 // @desc Create a task
 // @route Post / api/task
 async function createTask(req, res){
     try{
-        let body = ''
-        req.on('data', (chunk) => {
-            body += chunk.toString()
-        })
+        const body = await getPostData(req, res)
 
-        req.on('end',async () => {
-            const { name,description } = JSON.parse(body)
+        const { name,description } = JSON.parse(body)
 
-            const task = {
-                name,
-                description
-            }
-            const newTask =  await Tasks.create(task)
+        const task = {
+            name,
+            description
+        }
+        const newTask =  await Tasks.create(task)
 
-            res.writeHead(200,{'Content-type': 'application/json' })
-            return res.end(JSON.stringify(newTask)) 
-        })
-
-        
+        res.writeHead(201,{'Content-type': 'application/json' })
+        return res.end(JSON.stringify(newTask))
+   
     }catch (error) {
         console.log(error)
     }
