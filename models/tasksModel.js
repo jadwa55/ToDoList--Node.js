@@ -27,9 +27,9 @@ function create(task) {
 
 function update(id, task) {
     return new Promise((resolve, reject) => {
-        const index = tasks.findIndex((p) => p.id === id)
-        tasks[index] = {id, ... tasks}
-        writeDataToFile('./data/tasks.json', tasks)
+        const index = task.findIndex((p) => p.id === id)
+        tasks[index] = {id, ... task}
+        writeDataToFile('./data/tasks.json', task)
         resolve(tasks[index])
     })
 }
