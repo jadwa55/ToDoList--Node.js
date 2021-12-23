@@ -1,3 +1,10 @@
+let tasks = require('../data/tasks')
+const { v4: uuidv4 } = require('uuid')
+const mysql = require('mysql')
+
+const { writeDataToFile } = require('../test')
+
+
 const connection = mysql.createConnection({
     host: 'localhost',
     user: 'root',
@@ -14,31 +21,20 @@ connection.connect((err) => {
 });
 
 
-
-
-let tasks = require('../data/tasks')
-const { v4: uuidv4 } = require('uuid')
-
-const { writeDataToFile } = require('../test')
-
 function findAll() {
     return new Promise((resolve, reject) => {
-        resolve(tasks)
+        let sql = "SELECT * FROM tasks"
+        connection.query(sql,(err,result)=>{
+                        if(err){
+                            reject(err)
+                        }else{
+                            resolve(result) 
+                        }
+                    })
+        // resolve(tasks)
     })
 }
-// getAll = ()=>{
-//     return new Promise((resolve,reject)=>{
-//         let sql = "SELECT * FROM projects"
-//         connection.query(sql,(err,result)=>{
-//             if(err){
-//                 reject(err)
-//             }else{
-//                 resolve(result) 
-//             }
-//         })
 
-
-//     })
 
 function findById(id) {
     return new Promise((resolve, reject) => {
