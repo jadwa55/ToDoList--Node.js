@@ -1,4 +1,5 @@
 const Tasks = require('../models/tasksModel')
+const db = require("query-string")
 
 const { getPostData } = require('../test')
 
@@ -36,6 +37,29 @@ async function getTask(req, res, id){
 // @desc Create a task
 // @route Post / api/task
 async function createTask(req, res){
+
+
+    
+    // try {
+    //     let body = ''
+    //     let task 
+    //     req.on('data',(chunk)=>{
+    //         body += chunk
+    //     }).on('end', async ()=>{
+    //         task = db.parse(body);
+    //         let name = task.name
+    //         let description = task.description
+    //         let tas = new Tasks            
+    //         createTask = await tas.create(name,description)
+    //         res.writeHead(200,{ 'Content-Type': 'application/json' })
+    //         res.end(JSON.stringify(createTask))
+    //     })
+    // } catch (error) {
+    //     console.log(error)
+        
+    // }
+
+    
     try{
         const body = await getPostData(req)
 
@@ -53,6 +77,8 @@ async function createTask(req, res){
     }catch (error) {
         console.log(error)
     }
+
+
 } 
 
 

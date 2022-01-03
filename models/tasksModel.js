@@ -1,37 +1,43 @@
 let tasks = require('../data/tasks')
 const { v4: uuidv4 } = require('uuid')
-const mysql = require('mysql')
+// const mysql = require('mysql')
 
 const { writeDataToFile } = require('../test')
 
 
-const connection = mysql.createConnection({
-    host: 'localhost',
-    user: 'root',
-    password: '',
-    database: 'databasen',
-    multipleStatements: true
+// const connection = mysql.createConnection({
+//     host: 'localhost',
+//     user: 'root',
+//     password: '',
+//     database: 'databasen',
+//     multipleStatements: true
 
-});
-connection.connect((err) => {
-    if (err){
-        console.log(err)
-    };
-    console.log('Connected!');
-});
+// });
+// connection.connect((err) => {
+//     if (err){
+//         console.log(err)
+//     };
+//     console.log('Connected!');
+// });
 
+
+// function findAll() {
+//     return new Promise((resolve, reject) => {
+//         let sql = "SELECT * FROM tasks"
+//         connection.query(sql,(err,result)=>{
+//                         if(err){
+//                             reject(err)
+//                         }else{
+//                             resolve(result) 
+//                         }
+//                     })
+//         // resolve(tasks)
+//     })
+// }
 
 function findAll() {
     return new Promise((resolve, reject) => {
-        let sql = "SELECT * FROM tasks"
-        connection.query(sql,(err,result)=>{
-                        if(err){
-                            reject(err)
-                        }else{
-                            resolve(result) 
-                        }
-                    })
-        // resolve(tasks)
+        resolve(tasks)
     })
 }
 
@@ -51,6 +57,20 @@ function create(task) {
         resolve(newTask)
     })
 }
+
+// function create (name,description){
+
+//         return new Promise((resolve,reject)=>{
+//             let sql = `INSERT INTO tasks(name,description) VALUES("${name}","${description}")`
+//             let create = connection.query(sql,(err,result)=>{
+//                 if(err){
+//                     reject(err)
+//                 }
+//                 resolve(result)
+//                 })                 
+//         })
+
+// }
 
 function update(id, task) {
     return new Promise((resolve, reject) => {
